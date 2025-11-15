@@ -3,7 +3,9 @@
     "Namespaces": [
       {
         "Name": "sbemulatorns",
-        "Queues": [],
+        "Queues": [
+          { "Name": "process-order-events" }
+        ],
         "Topics": [
           {
             "Name": "new-order-events",

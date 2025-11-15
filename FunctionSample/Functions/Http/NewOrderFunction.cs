@@ -20,16 +20,16 @@ public class NewOrderFunction(
     {
         ArgumentNullException.ThrowIfNull(req);
 
-        var orderModel = await req.ReadFromJsonAsync<OrderModel>();
+        var orderModel = await req.ReadFromJsonAsync<NewOrderModel>();
         ArgumentNullException.ThrowIfNull(orderModel);
 
-        _logger.LogInformation("{functionName} HTTP trigger function processing an order {orderId}.", nameof(NewOrderFunction), orderModel.OrderId);
+        _logger.LogInformation("{functionName} HTTP trigger function processing a new order {orderId}.", nameof(NewOrderFunction), orderModel.OrderId);
 
         var sender = this._serviceBusClient.CreateSender("new-order-events");
         var message = new ServiceBusMessage(JsonSerializer.Serialize(orderModel));
         await sender.SendMessageAsync(message);
 
-        _logger.LogInformation("{functionName} HTTP trigger function processed an order {orderId}.", nameof(NewOrderFunction), orderModel.OrderId);
+        _logger.LogInformation("{functionName} HTTP trigger function processed a new order {orderId}.", nameof(NewOrderFunction), orderModel.OrderId);
 
         return new AcceptedResult("new-order-events", orderModel);
     }
