@@ -1,0 +1,24 @@
+{
+  "UserConfig": {
+    "Namespaces": [
+      {
+        "Name": "sbemulatorns",
+        "Queues": [],
+        "Topics": [
+          {
+            "Name": "new-order-events",
+            "Subscriptions": [
+              { "Name": "inventory-sub" },
+              { "Name": "email-sub" }
+            ]
+          }
+        ]
+      }
+    ],
+    "Logging": {
+      "Level": "Information",
+      "Type": "Console"
+      // Supported types are "Console" and "File"
+    }
+  }
+}
